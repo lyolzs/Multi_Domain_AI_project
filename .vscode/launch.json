@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: 当前文件", // 调试配置的名称，会显示在调试侧边栏的下拉菜单中
+            "type": "debugpy",            // 调试器的类型，这里是 python
+            "request": "launch",         // 请求类型，"launch" 表示由 VS Code 启动程序
+            "program": "${file}",        // 要调试的程序路径，"${file}" 是一个特殊变量，代表当前活动编辑器中的文件
+            "console": "integratedTerminal", // 在哪里显示程序输出，"integratedTerminal" 表示在 VS Code 的集成终端中
+            "cwd": "${workspaceFolder}", // 设置当前工作目录为工作区根目录
+        },
+        // 这是我们为 CNN 项目添加的专用配置
+        // {
+        //     "name": "CNN: Train FashionMNIST", // 给它一个有意义的名字
+        //     "type": "debugpy",           // 使用 Python 调试器
+        //     "request": "launch",      // 启动请求
+        //     // 直接指定主程序的路径，${workspaceFolder} 代表项目根目录
+        //     "program": "${workspaceFolder}/src/image_classification/CNN/main.py",  
+        //     "console": "integratedTerminal",
+        //     // "args" 是最关键的部分，用于传递命令行参数
+        //     "args": [
+        //         "--config",
+        //         "configs/image_classification/cnn_fashionmnist_config.yml"
+        //     ]
+        // }
+    ]
+}
