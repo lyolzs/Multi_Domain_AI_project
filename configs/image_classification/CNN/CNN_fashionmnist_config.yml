@@ -15,7 +15,7 @@ training:
 
 dataset:
   name: "FashionMNIST"
-  root: "./data/image_classification/fashion_mnist"
+  root: "./data/image_classification"
   normalize_mean: 0.1307
   normalize_std: 0.3081
 

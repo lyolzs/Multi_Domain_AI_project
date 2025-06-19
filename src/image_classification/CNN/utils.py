@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import logging
 import os
 import structlog
+import sys
 
 
 def load_config(config_path):
