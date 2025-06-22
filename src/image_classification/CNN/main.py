@@ -9,7 +9,7 @@ import logging  # 导入 logging 模块
 from .utils import load_config, parse_args, plot_metrics, def_setup_logging
 from .model import CNN
 from .data_loader import get_data_loaders
-from .train import train_epoch
+from .train import train_epoch, train
 from .evaluate import evaluate
 
 
@@ -31,9 +31,7 @@ def main():
     logger.info(f"Using device: {device}")
 
     # 4. 加载数据
-    logger.info("Loading data...")
     train_loader, test_loader = get_data_loaders(config)
-    logger.info("Data loaded successfully.")
 
     # 5. 初始化模型、损失函数和优化器
     model = CNN(config).to(device)
@@ -45,25 +43,15 @@ def main():
 
     # 6. 训练和评估循环
     epochs = config['training']['epochs']
-    train_losses, train_accuracies = [], []
-    test_losses, test_accuracies = [], []
-
-    for epoch in range(1, epochs + 1):
-        logger.info(f"--- Starting Epoch {epoch}/{epochs} ---")
-        train_loss, train_acc = train_epoch(
-            model, device, train_loader, optimizer, criterion, epoch)
-        test_loss, test_acc = evaluate(model, device, test_loader, criterion)
-
-        train_losses.append(train_loss)
-        train_accuracies.append(train_acc)
-        test_losses.append(test_loss)
-        test_accuracies.append(test_acc)
+    # 直接调用 train 函数即可启动整个训练过程
+    training_history = train(model, device, train_loader,
+                             optimizer, criterion, epochs)
 
     logger.info("Training finished.")
 
-    # 7. 可视化结果
-    plot_metrics(train_losses, test_losses,
-                 train_accuracies, test_accuracies, epochs)
+    # # 7. 可视化结果
+    # plot_metrics(training_history['train_loss'], training_history['train_accuracy'],
+    #              epochs)
 
 
 if __name__ == '__main__':
