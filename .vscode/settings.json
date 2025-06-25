@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "aasetset",
         "cifar",
         "cmap",
         "conv",
@@ -17,6 +18,7 @@
         "ntvs",
         "onnx",
         "pycache",
+        "randn",
         "tflite",
         "venv",
         "wandb",

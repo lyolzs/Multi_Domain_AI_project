@@ -1,20 +1,35 @@
+experiment:
+    name: "CNN_CIFAR10"
+    output_dir: "runs/image_classification" # 所有实验产物的根目录
+
+model:
+    input_channels: 3
+    conv1_out_channels: 32
+    conv2_out_channels: 64
+    fc1_out_features: 128
+    fc2_out_features: 10
+    dropout: 0.5
+
 dataset:
-  name: "cifar10"
-  root: "./data/image_classification_data"
-  image_size: [224, 224]
-  normalize_mean: 0.1307
-  normalize_std: 0.3081
-  validation_split_ratio: 0.2 # <-- 新增：将20%的训练数据作为验证集
-  data_augmentation: true # <-- 新增：为训练集启用数据增强
+    name: "cifar10" # 数据集名称
+    root: "./data/image_classification_data"
+    image_size: [32, 32]
+    normalize_mean: [0.4914, 0.4822, 0.4465]
+    normalize_std: [0.2470, 0.2435, 0.2616]
+    validation_split_ratio: 0.1 # <-- 新增：将20%的训练数据作为验证集
+    data_augmentation: true # <-- 新增：为训练集启用数据增强
 
 training:
-  weight_decay: 0.0001
-  batch_size: 64
-  epochs: 5
-  learning_rate: 0.001
-  seed: 42
+    learning_rate: 0.001 # 学习率
+    weight_decay: 0.0001 # 权重衰减
+    batch_size: 128
+    epochs: 300
+    seed: 42
+
+    model_filename: "best_cifar10_model.pth" # 模型保存位置
 
 # 新增日志配置
 logging:
-  level: "INFO" # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL
-  file_path: "Experiment_Log/temp.log" # 日志文件保存路径
+    level: "INFO" # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    file_path: "run.log" # 日志文件保存路径
+

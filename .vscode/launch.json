@@ -23,7 +23,7 @@
             // "args" 是最关键的部分，用于传递命令行参数
             "args": [
                 "--config",
-                "configs\\image_classification\\CNN\\CNN_fashionmnist_config.yml"
+                "configs\\config.yml"
             ]
         }
     ]

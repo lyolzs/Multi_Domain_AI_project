@@ -1,26 +1,7 @@
-import yaml
-import argparse
-import matplotlib.pyplot as plt
+import sys
 import logging
 import os
 import structlog
-import sys
-
-
-def load_config(config_path):
-    """加载 YAML 配置文件"""
-    with open(config_path, 'r', encoding='utf-8') as file:
-        config = yaml.safe_load(file)
-    return config
-
-
-def parse_args():
-    """使用 argparse 解析命令行参数"""
-    parser = argparse.ArgumentParser(description="通过命令行覆盖 YAML 配置参数")
-    parser.add_argument("--config", type=str, required=True, help="配置文件路径")
-    # 可以根据需要添加更多命令行参数来覆盖配置
-    # parser.add_argument("--training.batch_size", type=int, help="训练的批量大小")
-    return parser.parse_args()
 
 
 def def_setup_logging(config):
@@ -81,27 +62,3 @@ def struct_setup_logging(config, args):
 # 如果你仍希望有文件输出，可以配置 structlog 将 JSON 输出到文件，
 # 但对于方便阅读，ConsoleRenderer 是最佳选择。
 # 我们暂时简化，专注于提升可读性。
-
-
-def plot_metrics(train_losses, test_losses, train_accuracies, test_accuracies, epochs):
-    """绘制并显示训练和测试的损失和准确率曲线"""
-    plt.figure(figsize=(12, 5))
-
-    plt.subplot(1, 2, 1)
-    plt.plot(train_losses, label='Train Loss')
-    plt.plot(test_losses, label='Test Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.title('Loss vs. Epochs')
-    plt.legend()
-
-    plt.subplot(1, 2, 2)
-    plt.plot(train_accuracies, label='Train Accuracy')
-    plt.plot(test_accuracies, label='Test Accuracy')
-    plt.xlabel('Epoch')
-    plt.ylabel('Accuracy (%)')
-    plt.title('Accuracy vs. Epochs')
-    plt.legend()
-
-    plt.tight_layout()
-    plt.show()
